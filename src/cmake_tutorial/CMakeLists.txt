@@ -5,6 +5,7 @@ set(CMAKE_TUTORIAL_CONFIG_HPP
 configure_file(
     cmake_tutorial_config.hpp.in
     ${CMAKE_TUTORIAL_CONFIG_HPP}
+    # IMMEDIATE
 )
 
 set(
@@ -20,7 +21,6 @@ set(
     ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial.ipp
     ${CMAKE_TUTORIAL_INCLUDE_DIR}/ct_helper.hpp
     ${CMAKE_TUTORIAL_INCLUDE_DIR}/ct_helper.ipp
-    ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial_config.ipp
     ${CMAKE_TUTORIAL_CONFIG_HPP}
 )
 

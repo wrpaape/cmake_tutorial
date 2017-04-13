@@ -7,7 +7,7 @@ set(
 
 set(
     HEADERS
-    cmake_tutorial.hpp
+    ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial.hpp
 )
 
 set(

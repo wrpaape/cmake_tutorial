@@ -1,0 +1,2 @@
+#define CMAKE_TUTORIAL_AUTHOR  "wrpaape"
+#define CMAKE_TUTORIAL_VERSION 0.1

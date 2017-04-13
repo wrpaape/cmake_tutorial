@@ -15,7 +15,7 @@ set(
     ${CMAKE_TUTORIAL_SHARED_LIBRARY}
 )
 
-add_executable(${TARGET} ${SOURCES} ${HEADERS} ${LIBRARIES})
+add_executable(${TARGET} ${SOURCES} ${HEADERS})
 target_link_libraries(${TARGET} ${LIBRARIES})
 set_target_properties(
     ${TARGET}
