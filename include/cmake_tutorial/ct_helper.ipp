@@ -27,7 +27,7 @@ do_announce(const std::string &prefix,
 }
 
 
-template <typename T>
+template <typename T, typename ...Args>
 inline void
 announce(const std::string &func_name,
          const Args &...args)

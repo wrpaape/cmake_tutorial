@@ -8,7 +8,7 @@
 
 namespace ct_helper {
 
-template <typename T>
+template <typename T, typename ...Args>
 void
 announce(const std::string &func_name,
          const Args &...args);

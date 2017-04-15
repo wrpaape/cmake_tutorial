@@ -1,4 +1,5 @@
 set(TARGET test_cmake_tutorial)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_TEST_DIR})
 
 set(
     SOURCES
@@ -17,9 +18,3 @@ set(
 
 add_executable(${TARGET} ${SOURCES} ${HEADERS})
 target_link_libraries(${TARGET} ${LIBRARIES})
-set_target_properties(
-    ${TARGET}
-    PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY
-    ${PROJECT_TEST_DIR}
-)

@@ -15,5 +15,6 @@ set(
     ${CMAKE_TUTORIAL_STATIC_LIBRARY}
 )
 
+
 add_executable(${TARGET} ${SOURCES} ${HEADERS})
 target_link_libraries(${TARGET} ${LIBRARIES})

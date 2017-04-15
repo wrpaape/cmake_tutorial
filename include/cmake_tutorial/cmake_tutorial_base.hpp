@@ -15,7 +15,7 @@ protected:
     CmakeTutorialBase();
     ~CmakeTutorialBase();
 
-    sn_t serial_number();
+    sn_t serial_number() const;
     void app_info();
 
 private:
@@ -32,7 +32,7 @@ private:
     static dist_t dist;
     static const author_t author;
     static const version_t version;
-}
+};
 
 
 #endif // ifndef CMAKE_TUTORIAL_CMAKE_TUTORIAL_CMAKE_TUTORIAL_BASE_HPP

@@ -1,35 +1,41 @@
-#include "cmake_tutorial/cmake_tutorial.h"
+#include "cmake_tutorial/cmake_tutorial.hpp"
 
-using std::cout, std::endl;
+using std::cout;
+using std::endl;
 
-template <typename T>
+template<typename T, typename ...Args>
 void
 test_cmake_tutorial(const T &init_val,
                     const T &set_val,
-                    const T &...sum_vals)
+                    const Args &...sum_vals)
 {
-    T result;
+    T expected, got;
 
-    cout << "initializing value to: " << init_val;
+    cout << "initializing value to: " << init_val << endl;
 
-    CmakeTutorial ct(init_val);
+    CmakeTutorial<T> ct(init_val);
 
-    result = ct.get();
+    got = ct.get();
 
-    cout << "expected: " << init_val
-         << "got:      " << ct.get() << endl;
+    cout <<   "expected: " << init_val
+         << "\ngot:      " << got << endl;
 
-    cout << "setting value to: " << set_val;
+    cout << "setting value to: " << set_val << endl;
 
     ct.set(set_val);
 
-    cout << "expected: " << set_val
-         << "got:      " << ct.get() << endl;
+    got = ct.get();
+
+    cout <<   "expected: " << set_val
+         << "\ngot:      " << got << endl;
 
     cout << "summing values" << set_val << endl;
 
-    cout << "expected: " << ct.do_sum(sum_vals...)
-         << "got:      " << ct.sum(sum_vals...) << endl;
+    expected = ct.do_sum(sum_vals...);
+    got      = ct.sum(sum_vals...);
+
+    cout <<   "expected: " << expected
+         << "\ngot:      " << got << endl;
 
 }
 
@@ -39,6 +45,6 @@ main()
 {
     test_cmake_tutorial(1, 2, 3, 4, 5, 6);
     test_cmake_tutorial(1.0, 2.0, 3.0, 4.0, 5.0, 6.0);
-    test_cmake_tutorial(1.0, 2.0, 3f, 4, 5ULL, 6.0);
+    test_cmake_tutorial(1.0, 2.0, 3.0f, 4, 5ULL, 6.0);
     return 0;
 }

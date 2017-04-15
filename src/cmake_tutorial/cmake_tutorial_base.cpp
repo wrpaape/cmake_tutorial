@@ -1,41 +1,53 @@
 #include "cmake_tutorial/cmake_tutorial_base.hpp"
 #include "cmake_tutorial/cmake_tutorial_config.hpp"
+#include <iostream>
 #include <limits>
 #include <ctime>
 
-using CmakeTutorialBase;
-using sn_t_limits = std::numeric_limits<sn_t>;
-using std::cout, std::endl;
+typedef CmakeTutorialBase Ctb;
 
-const sn_t min_serial_number(sn_t_limits::min());
-const sn_t max_serial_number(sn_t_limits::max());
+using std::cout;
+using std::endl;
+using std::numeric_limits;
 
-engine_t engine(time(nullptr)); 
-dist_t dist(min_serial_number, max_serial_number);
 
-const author_t author(CMAKE_TUTORIAL_AUTHOR);
-const version_t version(CMAKE_TUTORIAL_VERSION);
+// Static Data
+// -----------------------------------------------------------------------------
+// constants
+const Ctb::sn_t      Ctb::min_serial_number(numeric_limits<Ctb::sn_t>::min());
+const Ctb::sn_t      Ctb::max_serial_number(numeric_limits<Ctb::sn_t>::max());
+const Ctb::author_t  Ctb::author(CMAKE_TUTORIAL_AUTHOR);
+const Ctb::version_t Ctb::version(CMAKE_TUTORIAL_VERSION);
+// stateful
+Ctb::engine_t Ctb::engine(time(nullptr)); 
+Ctb::dist_t   Ctb::dist(Ctb::min_serial_number, Ctb::max_serial_number);
 
-CmakeTutorialBase()
-    : sn(dist(engine))
+
+// Static Methods
+// -----------------------------------------------------------------------------
+void
+Ctb::app_info()
+{
+    cout <<   "author:  " << author
+         << "\nversion: " << version << endl;
+}
+
+
+// Instance Methods
+// -----------------------------------------------------------------------------
+Ctb::CmakeTutorialBase()
+    : sn(Ctb::dist(Ctb::engine))
 {
     cout << "constructing CmakeTutorialBase: " << sn << endl;
 }
 
-~CmakeTutorialBase()
+Ctb::~CmakeTutorialBase()
 {
     cout << "destroying CmakeTutorialBase: " << sn << endl;
 }
 
-sn_t
-serial_number()
+Ctb::sn_t
+Ctb::serial_number() const
 {
     return sn;
-}
-
-void
-app_info()
-{
-    cout <<   "author:  " << author
-         << "\nversion: " << version << endl;
 }

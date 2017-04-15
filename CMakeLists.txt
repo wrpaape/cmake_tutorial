@@ -6,33 +6,31 @@ project(
     LANGUAGES CXX
 )
 
+# cmake options
 set(CMAKE_VERBOSE_MAKEFILE on)
+set(CMAKE_CXX_STANDARD 14)
 
 # config defines
 set(CMAKE_TUTORIAL_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR})
 set(CMAKE_TUTORIAL_AUTHOR  "\"wrpaape\"")
 
-# output directories
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
-
-# misc global variables
+# global directories
+set(PROJECT_SRC_DIR     ${PROJECT_SOURCE_DIR}/src)
 set(PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(PROJECT_TEST_DIR    ${PROJECT_SOURCE_DIR}/test)
+set(PROJECT_BIN_DIR     ${PROJECT_SOURCE_DIR}/bin)
+set(PROJECT_LIB_DIR     ${PROJECT_SOURCE_DIR}/lib)
 
-# update recognized source file extensions
-# list(
-#     APPEND
-#     CMAKE_CXX_SOURCE_FILE_EXTENSIONS
-#     ipp
-# )
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN_DIR})
+
+# misc global variables
+
 
 # update include path
 include_directories(
     ${PROJECT_INCLUDE_DIR}
 )
-
 
 # subdirectories
 add_subdirectory(src)
