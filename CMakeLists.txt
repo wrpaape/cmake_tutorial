@@ -21,15 +21,32 @@ set(PROJECT_TEST_DIR    ${PROJECT_SOURCE_DIR}/test)
 set(PROJECT_BIN_DIR     ${PROJECT_SOURCE_DIR}/bin)
 set(PROJECT_LIB_DIR     ${PROJECT_SOURCE_DIR}/lib)
 
-
+# set binary executable output directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN_DIR})
 
-# misc global variables
+# test configuration
+enable_testing()
+
+set(PROJECT_TEST_BIN_DIR          ${PROJECT_TEST_DIR}/bin)
+set(PROJECT_TEST_INCLUDE_DIR      ${PROJECT_TEST_DIR}/include)
+set(PROJECT_TEST_INCLUDE_TEST_DIR ${PROJECT_TEST_INCLUDE_DIR}/test)
+set(PROJECT_TEST_CATCH_HEADER     ${PROJECT_TEST_INCLUDE_TEST_DIR}/catch.hpp)
+
+# 'make check' runs tests with verbose output
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --verbose)
+
+# download latest version of 'catch'
+file(
+    DOWNLOAD
+    "https://raw.githubusercontent.com/philsquared/Catch/master/single_include/catch.hpp"
+    ${PROJECT_TEST_CATCH_HEADER}
+)
 
 
 # update include path
 include_directories(
     ${PROJECT_INCLUDE_DIR}
+    ${PROJECT_TEST_INCLUDE_DIR}
 )
 
 # subdirectories
