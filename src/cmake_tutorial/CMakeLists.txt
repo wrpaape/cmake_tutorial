@@ -10,7 +10,6 @@ set(CMAKE_TUTORIAL_CONFIG_HPP
 configure_file(
     cmake_tutorial_config.hpp.in
     ${CMAKE_TUTORIAL_CONFIG_HPP}
-    # IMMEDIATE
 )
 
 set(
