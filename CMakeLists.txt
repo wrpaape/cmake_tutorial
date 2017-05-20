@@ -30,14 +30,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN_DIR})
 # Add cmake dir to search list
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_CMAKE_DIR})
 
-# configure testing (TODO change to cmake/X.cmake file to include)
-enable_testing()
-add_subdirectory(test)
+# configure testing
+include(configure_testing)
 
 # update include path
 include_directories(
     ${PROJECT_INCLUDE_DIR}
-    ${PROJECT_TEST_INCLUDE_DIRS}
 )
 
 # enter

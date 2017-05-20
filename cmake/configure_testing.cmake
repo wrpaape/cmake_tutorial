@@ -1,14 +1,17 @@
 # test configuration
-set(PROJECT_TEST_BIN_DIR          ${PROJECT_TEST_DIR}/bin                    PARENT_SCOPE)
-set(PROJECT_TEST_INCLUDE_DIR      ${PROJECT_TEST_DIR}/include                PARENT_SCOPE)
-set(PROJECT_TEST_INCLUDE_TEST_DIR ${PROJECT_TEST_INCLUDE_DIR}/test           PARENT_SCOPE)
+set(PROJECT_TEST_BIN_DIR          ${PROJECT_TEST_DIR}/bin          PARENT_SCOPE)
+set(PROJECT_TEST_INCLUDE_DIR      ${PROJECT_TEST_DIR}/include      PARENT_SCOPE)
+set(PROJECT_TEST_INCLUDE_TEST_DIR ${PROJECT_TEST_INCLUDE_DIR}/test PARENT_SCOPE)
 
-set(PROJECT_TEST_CATCH_HEADER     ${PROJECT_TEST_INCLUDE_TEST_DIR}/catch.hpp PARENT_SCOPE)
+# catch
+set(PROJECT_TEST_CATCH_DIR    ${PROJECT_TEST_INCLUDE_TEST_DIR}/catch)
+set(PROJECT_TEST_CATCH_HEADER ${PROJECT_TEST_CATCH_DIR}/catch.hpp PARENT_SCOPE)
 
 # 'make check' runs tests with verbose output
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --verbose)
 
 # download latest version of 'catch'
+file(MAKE_DIRECTORY ${PROJECT_TEST_CATCH_DIR})
 file(
     DOWNLOAD
     "https://raw.githubusercontent.com/philsquared/Catch/master/single_include/catch.hpp"
@@ -64,3 +67,4 @@ else()
         "${SOURCE_DIR}/googlemock/include")
 endif()
 
+enable_testing()
