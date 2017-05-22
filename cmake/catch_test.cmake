@@ -25,29 +25,50 @@ function(add_catch_test)
         ${ARGN}             # input params
     )
 
-    set(MISSING_REQUIRED "")
-
     foreach(REQUIRED NAME SOURCES)
-        if(${CATCH_TEST_${REQUIRED}} STREQUAL "")
-            set(MISSING_REQUIRED "${MISSING_REQUIRED} ${REQUIRED}")
+        if("${CATCH_TEST_${REQUIRED}}" STREQUAL "")
+            set(MISSING_REQUIRED "${MISSING_REQUIRED}${MISSING_SEPARTOR}${REQUIRED}")
+            set(MISSING_SEPARTOR ", ")
         endif()
     endforeach(REQUIRED)
 
-    if(NOT MISSING_REQUIRED STREQUAL "")
+    if(MISSING_REQUIRED)
         message(
             FATAL_ERROR
-            "missing required parameters '${MISSING_REQUIRED}' in call to "
-            "'add_catch_test'"
+            "missing required parameters '${MISSING_REQUIRED}'"
         )
-    endif()
-
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_TEST_BIN_DIR})
+    endif(MISSING_REQUIRED)
 
     set(CATCH_TEST_TARGET test_${CATCH_TEST_NAME})
 
-    add_executable(${CATCH_TEST_TARGET} ${CATCH_TEST_SOURCES} ${CATCH_TEST_HEADER})
+    add_executable(
+        ${CATCH_TEST_TARGET}
+        ${CATCH_TEST_SOURCES}
+        ${CATCH_TEST_HEADER}
+    )
 
-    target_link_libraries(${CATCH_TEST_TARGET} ${CATCH_TEST_LIBRARIES})
+    if(CATCH_TEST_LIBRARIES)
+        target_link_libraries(
+            ${CATCH_TEST_TARGET}
+            ${CATCH_TEST_LIBRARIES}
+        )
+    endif(CATCH_TEST_LIBRARIES)
 
-    add_test(${CATCH_TEST_NAME} ${PROJECT_TEST_BIN_DIR}/${TARGET})
+    set_target_properties(
+        ${CATCH_TEST_TARGET}
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${PROJECT_TEST_BIN_DIR}
+    )
+
+    target_include_directories(
+        ${CATCH_TEST_TARGET}
+        PUBLIC
+        ${PROJECT_TEST_INCLUDE_DIR}
+    )
+
+    add_test(
+        ${CATCH_TEST_NAME}
+        COMMAND "$<TARGET_FILE:${CATCH_TEST_TARGET}>"
+        WORKING_DIRECTORY ${PROJECT_TEST_BIN_DIR}
+    )
 endfunction(add_catch_test)

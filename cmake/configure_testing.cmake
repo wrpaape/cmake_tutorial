@@ -10,5 +10,5 @@ enable_testing()
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --verbose)
 
 # include testing frameworks
-include(catch) # Catch framework
-include(gtest) # Google Test framework
+include(catch_test)  # Catch framework
+include(google_test) # Google Test framework
