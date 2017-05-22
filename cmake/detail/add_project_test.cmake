@@ -1,5 +1,8 @@
-# Catch Testing Framework
-# ------------------------------------------------------------------------------
+if(PROJECT_CMAKE_DETAIL_ADD_PROJECT_TEST_INCLUDED)
+    return()
+endif(PROJECT_CMAKE_DETAIL_ADD_PROJECT_TEST_INCLUDED)
+set(PROJECT_CMAKE_DETAIL_ADD_PROJECT_TEST_INCLUDED)
+    
 set(CATCH_TEST_DIR    ${PROJECT_TEST_INCLUDE_DIR}/catch)
 set(CATCH_TEST_HEADER ${CATCH_TEST_DIR}/catch.hpp)
 

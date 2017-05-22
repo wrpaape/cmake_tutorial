@@ -1,12 +1,10 @@
 #define CATCH_CONFIG_MAIN
 #include "catch/catch.hpp" 
 #include "cmake_tutorial/cmake_tutorial.hpp"
-
 #include <vector>
 
 TEST_CASE( "vectors can be sized and resized", "[vector]" )
 {
-
     std::vector<int> v( 5 );
     
     REQUIRE( v.size() == 5 );

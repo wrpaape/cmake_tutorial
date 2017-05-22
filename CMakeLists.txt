@@ -22,21 +22,9 @@ set(PROJECT_BIN_DIR     ${PROJECT_SOURCE_DIR}/bin)
 set(PROJECT_LIB_DIR     ${PROJECT_SOURCE_DIR}/lib)
 set(PROJECT_CMAKE_DIR   ${PROJECT_SOURCE_DIR}/cmake)
 
-# set binary executable output directory
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BIN_DIR})
-
-# CMAKE_MODULE_PATH is a CMAKE variable. It contains a list of paths 
-# which could be used to search CMAKE modules by "include()" or "find_package()", but the default value is empty.
-# Add cmake dir to search list
+# Add cmake dir to CMAKE_MODULE_PATH
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_CMAKE_DIR})
 
-# configure testing
-include(configure_testing)
-
-# update include path
-include_directories(
-    ${PROJECT_INCLUDE_DIR}
-)
-
 # enter
+add_subdirectory(test) # configure testing first
 add_subdirectory(src)
