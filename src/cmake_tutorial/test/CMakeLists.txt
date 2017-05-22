@@ -1,9 +1,9 @@
-set(TARGET test_cmake_tutorial)
+set(TARGET test_cmake_tutorial_catch)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_TEST_BIN_DIR})
 
 set(
     SOURCES
-    test_cmake_tutorial.cpp
+    test_cmake_tutorial.catch.cpp
 )
 
 set(

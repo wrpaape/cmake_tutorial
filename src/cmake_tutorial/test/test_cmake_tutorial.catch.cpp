@@ -1,5 +1,5 @@
 #define CATCH_CONFIG_MAIN
-#include "test/catch.hpp" 
+#include "catch/catch.hpp" 
 #include "cmake_tutorial/cmake_tutorial.hpp"
 
 #include <vector>
