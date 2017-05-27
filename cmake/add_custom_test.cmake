@@ -16,11 +16,11 @@ include(CMakeParseArguments)
 function(add_custom_test)
     set(values FRAMEWORK_NAME
                NAME)
-    set(lists  FRAMEWORK_INCLUDE_DIRECTORIES
-               FRAMEWORK_SOURCES
-               FRAMEWORK_LIBRARIES
-               SOURCES
-               LIBRARIES)
+    set(lists FRAMEWORK_INCLUDE_DIRECTORIES
+              FRAMEWORK_SOURCES
+              FRAMEWORK_LIBRARIES
+              SOURCES
+              LIBRARIES)
     cmake_parse_arguments(
         CUSTOM_TEST # prefix
         ""          # booleans
@@ -54,14 +54,14 @@ function(add_custom_test)
     add_executable(
         ${CUSTOM_TEST_TARGET}
         ${CUSTOM_TEST_SOURCES}
-        ${FRAMEWORK_SOURCES}
+        ${CUSTOM_TEST_FRAMEWORK_SOURCES}
     )
 
-    if(CUSTOM_TEST_LIBRARIES OR FRAMEWORK_LIBRARIES)
+    if(CUSTOM_TEST_LIBRARIES OR CUSTOM_TEST_FRAMEWORK_LIBRARIES)
         target_link_libraries(
             ${CUSTOM_TEST_TARGET}
             ${CUSTOM_TEST_LIBRARIES}
-            ${FRAMEWORK_LIBRARIES}
+            ${CUSTOM_TEST_FRAMEWORK_LIBRARIES}
         )
     endif()
 
@@ -74,16 +74,17 @@ function(add_custom_test)
     target_include_directories(
         ${CUSTOM_TEST_TARGET}
         PUBLIC
+        ${PROJECT_INCLUDE_DIR}
         ${PROJECT_TEST_INCLUDE_DIR}
-        ${FRAMEWORK_INCLUDE_DIRECTORIES}
+        ${CUSTOM_TEST_FRAMEWORK_INCLUDE_DIRECTORIES}
     )
 
     add_test(
         NAME              ${CUSTOM_TEST_NAME}
         COMMAND           ${CUSTOM_TEST_TARGET}
-                          # $<TARGET_FILE:${CUSTOM_TEST_TARGET}>
         WORKING_DIRECTORY ${PROJECT_TEST_BIN_DIR}
     )
 
+    # append to dependencies of 'make run_tests'
     add_dependencies(${PROJECT_RUN_TESTS_TARGET} ${CUSTOM_TEST_TARGET})
 endfunction()

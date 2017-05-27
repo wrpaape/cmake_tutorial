@@ -10,7 +10,7 @@ project(
 set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_CXX_STANDARD 14)
 
-option(BUILD_TESTING "Enable unit testing." OFF)
+option(BUILD_TESTING "Enable unit testing." ON)
 
 # config defines
 set(CMAKE_TUTORIAL_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR})
