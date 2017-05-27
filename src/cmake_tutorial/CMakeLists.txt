@@ -28,4 +28,7 @@ add_library(${CMAKE_TUTORIAL_STATIC_LIBRARY} STATIC ${SOURCES})
 add_library(${CMAKE_TUTORIAL_SHARED_LIBRARY} SHARED ${SOURCES})
 
 
-add_subdirectory(test)
+if (BUILD_TESTING)
+    add_subdirectory(test)
+endif()
+

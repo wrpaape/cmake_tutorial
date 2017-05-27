@@ -1,7 +1,3 @@
-if (NOT BUILD_TESTING)
-    return()
-endif()
-
 include(add_catch_test)
 
 add_catch_test(

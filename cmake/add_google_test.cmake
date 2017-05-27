@@ -1,51 +1,86 @@
-# Google Test Testing Framework
-# ------------------------------------------------------------------------------
-find_package(GTest)
-if(NOT GTEST_FOUND)
-    # We need thread support
-    find_package(Threads REQUIRED)
-
-    # Enable ExternalProject CMake module
-    include(ExternalProject)
-
-    # Download and install GoogleTest
-    ExternalProject_Add(
-        gtest
-        PREFIX          ${PROJECT_TEST_SRC_DIR}/gtest
-        URL             https://github.com/google/googletest/archive/master.zip
-        INSTALL_COMMAND "" # Disable install step
-    )
-
-    # Get GTest source and binary directories from CMake project
-    ExternalProject_Get_Property(gtest SOURCE_DIR BINARY_DIR)
-
-    # Create a libgtest target to be used as a dependency by test programs
-    add_library(libgtest IMPORTED STATIC GLOBAL)
-    add_dependencies(libgtest gtest)
-
-    # Set libgtest properties
-    file(GLOB LIBGTEST_LOCATION ${BINARY_DIR}/googlemock/gtest/libgtest*)
-    set_target_properties(libgtest PROPERTIES
-        IMPORTED_LOCATION                 ${LIBGTEST_LOCATION}
-        IMPORTED_LINK_INTERFACE_LIBRARIES "${CMAKE_THREAD_LIBS_INIT}"
-    )
-
-    # Create a libgmock target to be used as a dependency by test programs
-    add_library(libgmock IMPORTED STATIC GLOBAL)
-    add_dependencies(libgmock gtest)
-
-    # Set libgmock properties
-    file(GLOB LIBGMOCK_LOCATION ${BINARY_DIR}/googlemock/libgmock*)
-    set_target_properties(libgmock PROPERTIES
-        IMPORTED_LOCATION                 ${LIBGMOCK_LOCATION}
-        IMPORTED_LINK_INTERFACE_LIBRARIES "${CMAKE_THREAD_LIBS_INIT}"
-    )
-
-    # I couldn't make it work with INTERFACE_INCLUDE_DIRECTORIES
-    set(GTEST_INCLUDE_DIRS ${SOURCE_DIR}/googletest/include)
-    set(GMOCK_INCLUDE_DIRS ${SOURCE_DIR}/googlemock/include)
+if(PROJECT_CMAKE_ADD_GOOGLE_TEST_CMAKE_INCLUDED)
+    return()
 endif()
+set(PROJECT_CMAKE_ADD_GOOGLE_TEST_CMAKE_INCLUDED TRUE)
+# ==============================================================================
+# add a 'test_${NAME}' executable and CTest from sources compiled with the
+# Google Test/Mock framework
+# ==============================================================================
+# External Dependencies
+# ------------------------------------------------------------------------------
+cmake_minimum_required(VERSION 2.8.2 FATAL_ERROR) # ExternalProject
+include(ExternalProject)
+include(add_custom_test)
 
 
-function(add_gtest)
-endfunction(add_gtest)
+# Exported Variables
+# ------------------------------------------------------------------------------
+set(GOOGLE_TEST_SRC_DIR   ${PROJECT_TEST_SRC_DIR}/googletest)
+set(GOOGLE_TEST_BUILD_DIR ${PROJECT_BUILD_TEST_SRC_DIR}/googletest)
+
+
+# Set Up Framework
+# ------------------------------------------------------------------------------
+ExternalProject_Add(
+    googletest
+    GIT_REPOSITORY    https://github.com/google/googletest.git
+    GIT_TAG           master
+    SOURCE_DIR        ${GOOGLE_TEST_SRC_DIR}
+    BINARY_DIR        ${GOOGLE_TEST_BUILD_DIR}
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND     ""
+    INSTALL_COMMAND   ""
+    TEST_COMMAND      ""
+)
+
+# # Download and unpack googletest at configure time
+# configure_file(CMakeLists.txt.in
+#                googletest-download/CMakeLists.txt)
+# execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+#   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+# execute_process(COMMAND ${CMAKE_COMMAND} --build .
+#   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+ 
+# Prevent GoogleTest from overriding our compiler/linker options
+# when building with Visual Studio
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+ 
+# Add googletest directly to our build. This adds
+# the following targets: gtest, gtest_main, gmock
+# and gmock_main
+add_subdirectory(
+    ${GOOGLE_TEST_SRC_DIR}
+    ${GOOGLE_TEST_LIB_DIR}
+)
+ 
+set(GOOGLE_TEST_GTEST_INCLUDE_DIR ${gtest_SOURCE_DIR}/include)
+set(GOOGLE_TEST_GMOCK_INCLUDE_DIR ${gmock_SOURCE_DIR}/include)
+set(
+    GOOGLE_TEST_SOURCES
+    ${GOOGLE_TEST_GTEST_INCLUDE_DIR}/gtest/gtest.h
+    ${GOOGLE_TEST_GMOCK_INCLUDE_DIR}/gmock/gmock.h
+)
+
+# The gtest/gmock targets carry header search path
+# dependencies automatically when using CMake 2.8.11 or
+# later. Otherwise we have to add them here ourselves.
+if (CMAKE_VERSION VERSION_LESS 2.8.11)
+    set(
+        GOOGLE_TEST_INCLUDE_DIRECTORIES
+        ${GOOGLE_TEST_GMOCK_INCLUDE_DIR}
+        ${GOOGLE_TEST_GMOCK_INCLUDE_DIR}
+    )
+endif()
+ 
+
+# External API
+# ------------------------------------------------------------------------------
+function(add_google_test)
+    add_custom_test(
+        ${ARGN}
+        FRAMEWORK_NAME                googletest
+        FRAMEWORK_SOURCES             ${GOOGLE_TEST_SOURCES}
+        FRAMEWORK_INCLUDE_DIRECTORIES "${GOOGLE_TEST_INCLUDE_DIRECTORIES}"
+        FRAMEWORK_LIBRARIES           gtest gtest_main gmock gmock_main
+    )
+endfunction()

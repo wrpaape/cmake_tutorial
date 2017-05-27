@@ -43,8 +43,8 @@ endif()
 # ------------------------------------------------------------------------------
 function(add_catch_test)
     add_custom_test(
+        ${ARGN}
         FRAMEWORK_NAME    Catch
         FRAMEWORK_SOURCES ${CATCH_TEST_HEADER}
-        ${ARGN}
     )
 endfunction()
