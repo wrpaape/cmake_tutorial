@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC   -shared -Wl,-soname,liblibct_shared.so -o ../../../lib/cmake_tutorial/liblibct_shared.so CMakeFiles/libct_shared.dir/cmake_tutorial_base.cpp.o 

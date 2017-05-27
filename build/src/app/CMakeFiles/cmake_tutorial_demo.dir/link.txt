@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/cmake_tutorial_demo.dir/cmake_tutorial_demo.cpp.o  -o ../../../bin/cmake_tutorial_demo -rdynamic ../../../lib/cmake_tutorial/liblibct_static.a 
