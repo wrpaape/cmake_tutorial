@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/test_cmake_tutorial_catch.dir/test_cmake_tutorial_catch.cpp.o  -o ../../../../test/bin/test_cmake_tutorial_catch -rdynamic ../../../../lib/cmake_tutorial/liblibct_shared.so -Wl,-rpath,/home/reid/my_projects/cpp/cmake_tutorial/lib/cmake_tutorial 

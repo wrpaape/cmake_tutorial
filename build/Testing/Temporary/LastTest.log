@@ -1,0 +1,21 @@
+Start testing: May 26 22:45 CDT
+----------------------------------------------------------
+1/1 Testing: cmake_tutorial_catch
+1/1 Test: cmake_tutorial_catch
+Command: "/home/reid/my_projects/cpp/cmake_tutorial/test/bin/test_cmake_tutorial_catch"
+Directory: /home/reid/my_projects/cpp/cmake_tutorial/test/bin
+"cmake_tutorial_catch" start time: May 26 22:45 CDT
+Output:
+----------------------------------------------------------
+===============================================================================
+All tests passed (16 assertions in 1 test case)
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"cmake_tutorial_catch" end time: May 26 22:45 CDT
+"cmake_tutorial_catch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 26 22:45 CDT

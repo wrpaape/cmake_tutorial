@@ -1,0 +1,13 @@
+/home/reid/my_projects/cpp/cmake_tutorial/build/CMakeFiles/edit_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/CMakeFiles/rebuild_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/CMakeFiles/edit_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/CMakeFiles/rebuild_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/cmake_tutorial/CMakeFiles/edit_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/cmake_tutorial/CMakeFiles/rebuild_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/cmake_tutorial/CMakeFiles/libct_shared.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/cmake_tutorial/CMakeFiles/libct_static.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/cmake_tutorial/test/CMakeFiles/edit_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/cmake_tutorial/test/CMakeFiles/rebuild_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/app/CMakeFiles/edit_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/app/CMakeFiles/rebuild_cache.dir
+/home/reid/my_projects/cpp/cmake_tutorial/build/src/app/CMakeFiles/cmake_tutorial_demo.dir

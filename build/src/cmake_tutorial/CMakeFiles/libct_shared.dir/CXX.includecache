@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/cmake_tutorial/cmake_tutorial_base.hpp
+string
+-
+random
+-
+
+../include/cmake_tutorial/cmake_tutorial_config.hpp
+
+/home/reid/my_projects/cpp/cmake_tutorial/src/cmake_tutorial/cmake_tutorial_base.cpp
+cmake_tutorial/cmake_tutorial_base.hpp
+/home/reid/my_projects/cpp/cmake_tutorial/src/cmake_tutorial/cmake_tutorial/cmake_tutorial_base.hpp
+cmake_tutorial/cmake_tutorial_config.hpp
+/home/reid/my_projects/cpp/cmake_tutorial/src/cmake_tutorial/cmake_tutorial/cmake_tutorial_config.hpp
+iostream
+-
+limits
+-
+ctime
+-
+

@@ -15,10 +15,6 @@ configure_file(
 set(
     SOURCES
     cmake_tutorial_base.cpp
-)
-
-set(
-    HEADERS
     ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial_base.hpp
     ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial.hpp
     ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial.ipp
@@ -28,7 +24,8 @@ set(
 )
 
 
-add_library(${CMAKE_TUTORIAL_STATIC_LIBRARY} STATIC ${SOURCES} ${HEADERS})
-add_library(${CMAKE_TUTORIAL_SHARED_LIBRARY} SHARED ${SOURCES} ${HEADERS})
+add_library(${CMAKE_TUTORIAL_STATIC_LIBRARY} STATIC ${SOURCES})
+add_library(${CMAKE_TUTORIAL_SHARED_LIBRARY} SHARED ${SOURCES})
+
 
 add_subdirectory(test)

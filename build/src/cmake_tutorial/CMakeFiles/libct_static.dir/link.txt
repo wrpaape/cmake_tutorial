@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/cmake_tutorial/liblibct_static.a  CMakeFiles/libct_static.dir/cmake_tutorial_base.cpp.o
+/usr/bin/ranlib ../../../lib/cmake_tutorial/liblibct_static.a
