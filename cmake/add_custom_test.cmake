@@ -51,6 +51,16 @@ function(add_custom_test)
 
     set(CUSTOM_TEST_TARGET test_${CUSTOM_TEST_NAME})
 
+    include_directories(
+        ${CUSTOM_TEST_TARGET}
+        PUBLIC
+        ${PROJECT_INCLUDE_DIR}
+        ${PROJECT_TEST_INCLUDE_DIR}
+        ${CUSTOM_TEST_FRAMEWORK_INCLUDE_DIRECTORIES}
+    )
+
+    link_directories(${PROJECT_TEST_LIB_DIR})
+
     add_executable(
         ${CUSTOM_TEST_TARGET}
         ${CUSTOM_TEST_SOURCES}
@@ -69,14 +79,6 @@ function(add_custom_test)
         ${CUSTOM_TEST_TARGET}
         PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_TEST_BIN_DIR}
-    )
-
-    target_include_directories(
-        ${CUSTOM_TEST_TARGET}
-        PUBLIC
-        ${PROJECT_INCLUDE_DIR}
-        ${PROJECT_TEST_INCLUDE_DIR}
-        ${CUSTOM_TEST_FRAMEWORK_INCLUDE_DIRECTORIES}
     )
 
     add_test(

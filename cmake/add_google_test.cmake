@@ -37,16 +37,12 @@ ExternalProject_Add(
 # when building with Visual Studio
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-find_library(GOOGLE_TEST_GTEST_LIBRARY      gtest      PATHS ${PROJECT_TEST_LIB_DIR})
-find_library(GOOGLE_TEST_GTEST_MAIN_LIBRARY gtest_main PATHS ${PROJECT_TEST_LIB_DIR})
-find_library(GOOGLE_TEST_GMOCK_LIBRARY      gmock      PATHS ${PROJECT_TEST_LIB_DIR})
-find_library(GOOGLE_TEST_GMOCK_MAIN_LIBRARY gmock_main PATHS ${PROJECT_TEST_LIB_DIR})
 set(
     GOOGLE_TEST_LIBRARIES
-    ${GOOGLE_TEST_GTEST_LIBRARY}
-    ${GOOGLE_TEST_GTEST_MAIN_LIBRARY}
-    ${GOOGLE_TEST_GMOCK_LIBRARY}
-    ${GOOGLE_TEST_GMOCK_MAIN_LIBRARY}
+    gtest
+    gtest_main
+    gmock
+    gmock_main
     ${CMAKE_THREAD_LIBS_INIT}
 )
  

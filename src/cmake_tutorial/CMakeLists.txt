@@ -1,11 +1,12 @@
 # output libraries
-set(CMAKE_TUTORIAL_LIB_DIR ${PROJECT_LIB_DIR}/cmake_tutorial)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_TUTORIAL_LIB_DIR})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_TUTORIAL_LIB_DIR})
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_LIB_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_LIB_DIR})
 
 # configure header, move to 'include'
-set(CMAKE_TUTORIAL_CONFIG_HPP
-    ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial_config.hpp)
+set(
+    CMAKE_TUTORIAL_CONFIG_HPP
+    ${CMAKE_TUTORIAL_INCLUDE_DIR}/cmake_tutorial_config.hpp
+)
 
 configure_file(
     cmake_tutorial_config.hpp.in
